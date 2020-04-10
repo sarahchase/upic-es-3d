@@ -10,20 +10,20 @@
 
 
 # MacMPI
-MPIFC = mpif90
-MPIFC77 = mpif90
+MPIFC = mpiifort
+MPIFC77 = mpiifort
 
-FC90 = mpif90
-FC77 = mpif90
-CC = mpicc
+FC90 = mpiifort
+FC77 = mpiifort
+CC = mpiicc
 
-OPTS90 = -O3 -fdefault-real-8 -ffree-form
-OPTS77 = -O3 -fdefault-real-8
-CCOPTS = -O -march=native -std=c99
-#MOPTS = -fno-automatic
-#MBOPTS = -fno-automatic
-#LOPTS =
-#LEGACY =
+OPTS90 = -O3 -r8 -ipo -O3 -no-prec-div -axCORE-AVX-I,AVX,SSE4.2 -xSSE2 -msse2
+OPTS77 = -O3 -r8 -ipo -O3 -no-prec-div -axCORE-AVX-I,AVX,SSE4.2 -xSSE2 -msse2
+CCOPTS = -O3 -ipo  -axCORE-AVX-I,AVX,SSE4.2 -xSSE2 -msse2
+# MOPTS = -save
+# MBOPTS = -save
+# LOPTS = -lpthread
+# LEGACY =
 
 
 
@@ -32,7 +32,7 @@ UNDERSCORE = FORTRANSINGLEUNDERSCORE
 
 MPIOBJS = nullLOG.o
 
-HDF_DIR = /usr/local/
+HDF_DIR = $(HDF5_DIR)
 HDF_LIBPATH = -L$(HDF_DIR)/lib -lhdf5_fortran -lhdf5  -lhdf5_hl -lhdf5hl_fortran -lz
 HDF_INCPATH = -I$(HDF_DIR)/include
 
